@@ -5,7 +5,7 @@
 
 An LSPosed module that replaces the earbud `deviceId` Xiaomi Bluetooth reports, so a pair of earbuds can reuse **another Xiaomi model's connection popup animation, Super Island notification and Settings device images** — without touching the audio link (A2DP/HFP stay untouched).
 
-- Package: `com.mi.budsid`
+- Package: `io.github.jumaoli.budsid`
 - Scope: `com.xiaomi.bluetooth` (popup / Super Island / device details), `com.milink.service` (fusion device card), optional `com.android.settings` for the detail-page image
 - Tested on HyperOS 4 / Android 17 (M610BB); should work on HyperOS 2/3 as well
 
@@ -60,8 +60,8 @@ The script calls `aapt2`, `javac`, `d8`, `zipalign` and `apksigner` directly and
 ## Layout
 
 ```
-src/com/mi/budsid/          app UI, catalog, thumbnails, Miuix widgets
-src/com/mi/budsid/hook/     Xposed entry and swap logic
+src/io/github/jumaoli/budsid/          app UI, catalog, thumbnails, Miuix widgets
+src/io/github/jumaoli/budsid/hook/     Xposed entry and swap logic
 assets/                     device catalog (devices.json), xposed_init
 res/                        icons, strings, arrays
 stubs/                      Xposed API stubs for compilation

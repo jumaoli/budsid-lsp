@@ -1,4 +1,4 @@
-package com.mi.budsid.hook;
+package io.github.jumaoli.budsid.hook;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 final class Mapper {
 
-    private static final String URL = "content://com.mi.budsid.config/config";
+    private static final String URL = "content://io.github.jumaoli.budsid.config/config";
     private static final long TTL_MS = 1500L;
 
     private static final class R {

@@ -1,4 +1,4 @@
-package com.mi.budsid;
+package io.github.jumaoli.budsid;
 
 import android.app.Activity;
 import android.app.Dialog;

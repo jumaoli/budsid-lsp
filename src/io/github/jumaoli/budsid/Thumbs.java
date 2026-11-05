@@ -1,4 +1,4 @@
-package com.mi.budsid;
+package io.github.jumaoli.budsid;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -76,7 +76,7 @@ public final class Thumbs {
                 }
             }
         };
-        IntentFilter f = new IntentFilter("com.mi.budsid.THUMB");
+        IntentFilter f = new IntentFilter("io.github.jumaoli.budsid.THUMB");
         if (Build.VERSION.SDK_INT >= 33) {
             ctx.registerReceiver(r, f, Context.RECEIVER_EXPORTED);
         } else {
@@ -95,7 +95,7 @@ public final class Thumbs {
         list.add(view);
         if (!first) return;
         try {
-            Intent i = new Intent("com.mi.budsid.THUMB_REQ");
+            Intent i = new Intent("io.github.jumaoli.budsid.THUMB_REQ");
             i.setPackage("com.xiaomi.bluetooth");
             i.putExtra("id", id);
             i.putExtra("big", big);
@@ -128,7 +128,7 @@ public final class Thumbs {
         list.add(view);
         if (!first) return;
         try {
-            Intent i = new Intent("com.mi.budsid.THUMB_BIG_REQ");
+            Intent i = new Intent("io.github.jumaoli.budsid.THUMB_BIG_REQ");
             i.setPackage("com.xiaomi.bluetooth");
             i.putExtra("id", id);
             ctx.sendBroadcast(i);

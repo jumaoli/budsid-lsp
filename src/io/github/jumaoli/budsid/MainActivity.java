@@ -1,4 +1,4 @@
-package com.mi.budsid;
+package io.github.jumaoli.budsid;
 
 import android.Manifest;
 import android.app.Activity;
@@ -151,7 +151,7 @@ public class MainActivity extends Activity {
 
     private void requestLocalCatalog() {
         try {
-            Intent req = new Intent("com.mi.budsid.CATALOG_REQ");
+            Intent req = new Intent("io.github.jumaoli.budsid.CATALOG_REQ");
             req.setPackage("com.xiaomi.bluetooth");
             sendBroadcast(req);
         } catch (Throwable ignored) {
@@ -192,7 +192,7 @@ public class MainActivity extends Activity {
 
     private void sendPrefetch(String id) {
         try {
-            Intent i = new Intent("com.mi.budsid.PREFETCH");
+            Intent i = new Intent("io.github.jumaoli.budsid.PREFETCH");
             i.setPackage("com.xiaomi.bluetooth");
             i.putExtra("id", id);
             sendBroadcast(i);
@@ -919,7 +919,7 @@ public class MainActivity extends Activity {
                 applyCatalogResult(added);
             }
         };
-        IntentFilter filter = new IntentFilter("com.mi.budsid.CATALOG");
+        IntentFilter filter = new IntentFilter("io.github.jumaoli.budsid.CATALOG");
         if (Build.VERSION.SDK_INT >= 33) {
             registerReceiver(catalogReceiver, filter, Context.RECEIVER_EXPORTED);
         } else {

@@ -1,4 +1,4 @@
-package com.mi.budsid.hook;
+package io.github.jumaoli.budsid.hook;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -436,10 +436,10 @@ public class HookEntry implements IXposedHookLoadPackage {
                     }
                     if (hit == null) return;
                     String b64 = android.util.Base64.encodeToString(hit, android.util.Base64.NO_WRAP);
-                    Intent out = new Intent("com.mi.budsid.THUMB");
+                    Intent out = new Intent("io.github.jumaoli.budsid.THUMB");
                     out.putExtra("id", id);
                     out.putExtra("data", b64);
-                    out.setPackage("com.mi.budsid");
+                    out.setPackage("io.github.jumaoli.budsid");
                     ctx.sendBroadcast(out);
                     log("thumb dl sent " + id + " " + hit.length);
                 } catch (Throwable t) {
@@ -468,7 +468,7 @@ public class HookEntry implements IXposedHookLoadPackage {
                         try {
                             String id = i.getStringExtra("id");
                             boolean big = i.getBooleanExtra("big", false)
-                                    || "com.mi.budsid.THUMB_BIG_REQ".equals(i.getAction());
+                                    || "io.github.jumaoli.budsid.THUMB_BIG_REQ".equals(i.getAction());
                             log("thumb req " + id + " big=" + big);
                             if (id == null) return;
                             File dir = new File(ctx.getFilesDir(), "fc_resources/" + id);
@@ -503,11 +503,11 @@ public class HookEntry implements IXposedHookLoadPackage {
                             in.close();
                             String b64 = android.util.Base64.encodeToString(data,
                                     android.util.Base64.NO_WRAP);
-                            Intent out = new Intent("com.mi.budsid.THUMB");
+                            Intent out = new Intent("io.github.jumaoli.budsid.THUMB");
                             out.putExtra("id", id);
                             out.putExtra("big", big);
                             out.putExtra("data", b64);
-                            out.setPackage("com.mi.budsid");
+                            out.setPackage("io.github.jumaoli.budsid");
                             ctx.sendBroadcast(out);
                             log("thumb sent " + id + " " + data.length);
                         } catch (Throwable t) {
@@ -515,8 +515,8 @@ public class HookEntry implements IXposedHookLoadPackage {
                         }
                     }
                 };
-                IntentFilter f = new IntentFilter("com.mi.budsid.THUMB_REQ");
-                f.addAction("com.mi.budsid.THUMB_BIG_REQ");
+                IntentFilter f = new IntentFilter("io.github.jumaoli.budsid.THUMB_REQ");
+                f.addAction("io.github.jumaoli.budsid.THUMB_BIG_REQ");
                 try {
                     if (Build.VERSION.SDK_INT >= 33) {
                         ctx.registerReceiver(r, f, Context.RECEIVER_EXPORTED);
@@ -552,7 +552,7 @@ public class HookEntry implements IXposedHookLoadPackage {
                         }
                     }
                 };
-                IntentFilter f = new IntentFilter("com.mi.budsid.PREFETCH");
+                IntentFilter f = new IntentFilter("io.github.jumaoli.budsid.PREFETCH");
                 try {
                     if (Build.VERSION.SDK_INT >= 33) {
                         ctx.registerReceiver(r, f, Context.RECEIVER_EXPORTED);
@@ -609,9 +609,9 @@ public class HookEntry implements IXposedHookLoadPackage {
                         }
                     }
                     sb.append(']');
-                    Intent out = new Intent("com.mi.budsid.CATALOG");
+                    Intent out = new Intent("io.github.jumaoli.budsid.CATALOG");
                     out.putExtra("json", sb.toString());
-                    out.setPackage("com.mi.budsid");
+                    out.setPackage("io.github.jumaoli.budsid");
                     ctx.sendBroadcast(out);
                     log("catalog sent n=" + (sb.length()));
                 } catch (Throwable t) {
@@ -619,7 +619,7 @@ public class HookEntry implements IXposedHookLoadPackage {
                 }
             }
         };
-        IntentFilter filter = new IntentFilter("com.mi.budsid.CATALOG_REQ");
+        IntentFilter filter = new IntentFilter("io.github.jumaoli.budsid.CATALOG_REQ");
         if (Build.VERSION.SDK_INT >= 33) {
             ctx.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
         } else {

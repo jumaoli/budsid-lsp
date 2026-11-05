@@ -9,7 +9,7 @@
 从而直接复用目标型号的**连接弹窗动画**、**超级岛视频**、**设置页设备图**和**功能页条目**。
 只改显示身份，不动 A2DP/HFP 音频链路。
 
-- 模块包名：`com.mi.budsid`
+- 模块包名：`io.github.jumaoli.budsid`
 - 作用域：`com.xiaomi.bluetooth`（弹窗、超级岛、设备详情都由它提供）
 - 适配环境：HyperOS 4 / Android 17（实测机型 M610BB），理论上 HyperOS 2/3 同样适用
 
@@ -219,7 +219,7 @@ MiuiFastConnectResource.getDrawableFromFile(deviceId, "fc_<deviceId>_hs_ok.webp"
 弹窗/超级岛/详情页的图都来自 `fc_resources/<目标代号>/`，如果这个目录还没下载，
 取图 hook 会回退原图，看起来就像“替换失效”。
 
-- 选型号/保存规则时，App 发广播 `com.mi.budsid.PREFETCH` 给蓝牙模块，模块立刻后台下载目标 zip；
+- 选型号/保存规则时，App 发广播 `io.github.jumaoli.budsid.PREFETCH` 给蓝牙模块，模块立刻后台下载目标 zip；
 - App 每次回到前台也会对所有规则目标补一次预取；
 - 下载完成后重连一次，弹窗和超级岛就是目标型号（实测 REDMI Clip Neo `01013F05`，336 个文件）。
 
@@ -248,7 +248,7 @@ MiuiFastConnectResource.getDrawableFromFile(deviceId, "fc_<deviceId>_hs_ok.webp"
 `fast_connect/<id>.zip` 对部分型号返回 403（私有对象），App 自己拉不到图。
 现在加了一条兜底链路：
 
-- App 先直连 CDN，失败后发广播 `com.mi.budsid.THUMB_REQ`（带 id）给蓝牙模块；
+- App 先直连 CDN，失败后发广播 `io.github.jumaoli.budsid.THUMB_REQ`（带 id）给蓝牙模块；
 - 模块在本机 `fc_resources/<id>/` 里找 `_hs_ok` / `_hs` / `_box` 图片，base64 回传；
 - App 落盘到 `files/thumbs/<id>.webp` 并立即刷新对应 ImageView。
 
@@ -291,9 +291,9 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1
 
 ```
 AndroidManifest.xml        LSPosed 声明 + 配置 Provider
-assets/xposed_init         com.mi.budsid.hook.HookEntry
+assets/xposed_init         io.github.jumaoli.budsid.hook.HookEntry
 assets/devices.json        代号库（241 条，含是否有弹窗动画）
-src/com/mi/budsid/
+src/io/github/jumaoli/budsid/
   MainActivity.java        Miuix 风格界面
   MiuixSwitch.java         HyperOS 胶囊开关
   Sheet.java               底部弹层

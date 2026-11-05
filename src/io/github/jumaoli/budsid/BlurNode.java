@@ -1,4 +1,4 @@
-package com.mi.budsid;
+package io.github.jumaoli.budsid;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

@@ -1,4 +1,4 @@
-package com.mi.budsid;
+package io.github.jumaoli.budsid;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -13,7 +13,7 @@ import android.os.ParcelFileDescriptor;
  */
 public class ConfigProvider extends ContentProvider {
 
-    public static final String AUTHORITY = "com.mi.budsid.config";
+    public static final String AUTHORITY = "io.github.jumaoli.budsid.config";
     public static final String URL = "content://" + AUTHORITY + "/config";
     public static final Uri URI = Uri.parse(URL);
 
