@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LSPosed 里默认勾选的作用域：小米蓝牙负责弹窗/超级岛，MiLink 负责融合设备卡与设备详情 -->
+    <string-array name="xposed_scope">
+        <item>com.xiaomi.bluetooth</item>
+        <item>com.milink.service</item>
+    </string-array>
+</resources>

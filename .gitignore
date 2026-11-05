@@ -1,0 +1,12 @@
+﻿dist/
+build/
+*.apk
+gen_devices.py
+gen_devices2.py
+parse_probe.py
+patch2.py
+patch_main.py
+probe2.py
+*.log
+.idea/
+*.iml
