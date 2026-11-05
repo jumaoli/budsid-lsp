@@ -2,6 +2,9 @@
 
 [English](README.en.md) · 中文
 
+![build](https://github.com/jumaoli/budsid-lsp/actions/workflows/build.yml/badge.svg)
+![release](https://img.shields.io/github/v/release/jumaoli/budsid-lsp)
+
 一个 LSPosed 模块：把小米蓝牙识别到的耳机代号（deviceId）换成另一款小米耳机，
 从而直接复用目标型号的**连接弹窗动画**、**超级岛视频**、**设置页设备图**和**功能页条目**。
 只改显示身份，不动 A2DP/HFP 音频链路。

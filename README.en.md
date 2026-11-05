@@ -1,5 +1,8 @@
 ﻿# BudsId · Xiaomi Earbud Device-ID Swap
 
+![build](https://github.com/jumaoli/budsid-lsp/actions/workflows/build.yml/badge.svg)
+![release](https://img.shields.io/github/v/release/jumaoli/budsid-lsp)
+
 An LSPosed module that replaces the earbud `deviceId` Xiaomi Bluetooth reports, so a pair of earbuds can reuse **another Xiaomi model's connection popup animation, Super Island notification and Settings device images** — without touching the audio link (A2DP/HFP stay untouched).
 
 - Package: `com.mi.budsid`
