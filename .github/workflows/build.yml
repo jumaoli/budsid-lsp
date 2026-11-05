@@ -1,0 +1,46 @@
+﻿name: build
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Ensure Android SDK build-tools and platform
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sdk = $env:ANDROID_HOME
+          if (-not $sdk) { $sdk = $env:ANDROID_SDK_ROOT }
+          Write-Host "SDK = $sdk"
+          $needBt = -not (Test-Path (Join-Path $sdk 'build-tools'))
+          $needPl = -not (Test-Path (Join-Path $sdk 'platforms'))
+          if ($needBt -or $needPl) {
+            $sm = Get-ChildItem (Join-Path $sdk 'cmdline-tools') -Recurse -Filter sdkmanager.bat -ErrorAction SilentlyContinue | Select-Object -First 1
+            if (-not $sm) { throw 'sdkmanager not found' }
+            & $sm.FullName 'platforms;android-35' 'build-tools;35.0.0'
+          }
+
+      - name: Build APK
+        shell: pwsh
+        run: ./build.ps1
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: budsid-apk
+          path: dist/*.apk
+          if-no-files-found: error
